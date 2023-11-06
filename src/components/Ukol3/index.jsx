@@ -1,4 +1,5 @@
-import { Product } from "./Product";
+import { useState } from 'react';
+import { Product } from './Product';
 
 /*
   Zadání: Budeme chtít, aby uživatel mohl klikat na kousky oblečení a u každého viděl, kolik kusů si objednal. Zároveň chceme, aby se mu po kliknutí na kousek oblečení zvýšila celková cena objednávky.
@@ -15,16 +16,40 @@ import { Product } from "./Product";
 */
 
 export const Ukol3 = () => {
+  const [totalPrice, setTotalPrice] = useState(0);
+  const handleAddToCard = (price) => {
+    setTotalPrice(totalPrice + price);
+  };
   return (
     <>
       <p>
-        Cena: <strong>0 Kč</strong>
+        Cena: <strong>{totalPrice} Kč</strong>
       </p>
       <div className="products">
-        <Product image="/clothing/item01.jpg" name="Bunda" price={500} />
-        <Product image="/clothing/item02.jpg" name="Halenka" price={1200} />
-        <Product image="/clothing/item03.jpg" name="Svetr" price={1500} />
-        <Product image="/clothing/item04.jpg" name="Mikina" price={800} />
+        <Product
+          onAddToCart={handleAddToCard}
+          image="/clothing/item01.jpg"
+          name="Bunda"
+          price={500}
+        />
+        <Product
+          onAddToCart={handleAddToCard}
+          image="/clothing/item02.jpg"
+          name="Halenka"
+          price={1200}
+        />
+        <Product
+          onAddToCart={handleAddToCard}
+          image="/clothing/item03.jpg"
+          name="Svetr"
+          price={1500}
+        />
+        <Product
+          onAddToCart={handleAddToCard}
+          image="/clothing/item04.jpg"
+          name="Mikina"
+          price={800}
+        />
       </div>
     </>
   );
